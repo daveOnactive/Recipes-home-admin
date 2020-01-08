@@ -19,7 +19,7 @@ function App() {
                 <Link to='/' className="link">Home</Link>
               </li>
               <li>
-                <Link to='/register' className="link">Signup</Link>
+                <Link to='/admin' className="link">Admin</Link>
               </li>
             </ul>
           </div>
