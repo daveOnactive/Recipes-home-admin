@@ -1,0 +1,61 @@
+@import './variables.scss';
+@import './button.scss';
+
+h2 {
+  color: addColor(main-color);
+  font-weight: bolder;
+  // font-variant: small-caps;
+  text-align: center;
+}
+form {
+  width: 40%;
+  padding: 0 .5rem;
+  margin: 1rem 0;
+  label {
+    color: addColor(main-color);
+    margin: 1rem 0;
+    text-align: left;
+  }
+  input {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: .5rem;
+    margin: .5rem 0;
+  }
+
+  button {
+    margin: 1rem auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+  }
+}
+
+main {
+  .wrapper {
+    width: 50%;
+    // background: #111;
+    position: relative;
+    height: 100%;
+    margin: 1rem auto;
+    .sign-in {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      // background: red;
+      // z-index: -2;
+      // height: 100%;
+      // opacity: 0;
+      visibility: hidden;
+    }
+    .sign-in, .sign-up {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}

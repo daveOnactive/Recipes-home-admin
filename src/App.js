@@ -5,6 +5,7 @@ import './App.scss';
 import PrivateRoute from './components/privateRoute';
 const Home = React.lazy(() => import('./components/home/home'));
 const Admin = React.lazy(() => import('./components/admin/admin'));
+const Register = React.lazy(() => import('./components/register/register'));
 function App() {
   return (
       <Router>
@@ -27,7 +28,7 @@ function App() {
         <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
             <Route exact path='/' component={Home} />
-            {/* <Route to='/register' component={} /> */}
+            <Route to='/register' component={Register} />
             <PrivateRoute path='/admin' component={Admin} />
           </Switch>
         </Suspense>
