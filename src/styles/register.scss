@@ -40,16 +40,12 @@ main {
     position: relative;
     height: 100%;
     margin: 1rem auto;
-    .sign-in {
+    .sign-up {
       position: absolute;
-      top: 50%;
+      top: 75%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
-      // background: red;
-      // z-index: -2;
-      // height: 100%;
-      // opacity: 0;
       visibility: hidden;
     }
     .sign-in, .sign-up {

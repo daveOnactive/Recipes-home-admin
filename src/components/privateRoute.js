@@ -9,7 +9,7 @@ const PrivateRoute = ({component : Component, ...rest}) => {
       authState ? (
         <Component {...props} />
       ) : (
-        <Redirect to='/' />
+        <Redirect to='/register' />
       )
     )}
     />

@@ -28,7 +28,7 @@ function App() {
         <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route to='/register' component={Register} />
+            <Route path='/register' component={Register} />
             <PrivateRoute path='/admin' component={Admin} />
           </Switch>
         </Suspense>
