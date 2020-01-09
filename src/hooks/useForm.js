@@ -18,8 +18,7 @@ export const useNameValidate = () => {
   const [name, setName] = useState('');
   
   const nameChangeEvent = e => {
-    e.preventDefault();
-    if(e.target.value.length <= 3) {
+    if(e.target.value.length <= 3 && e.target.value !== '') {
       Errors.name.message = 'short name';
       Errors.name.status = true;
       setName(e.target.value);
@@ -39,7 +38,7 @@ export const useEmailValidate = () => {
   const [email, setEmail] = useState('');
 
   const emailChangeEvent = e => {
-    if(e.target.value.length <= 3) {
+    if(e.target.value.length <= 3 && e.target.value !== '') {
       Errors.email.status = true;
       Errors.email.message = 'Invalid Email';
       setEmail(e.target.value);
@@ -59,7 +58,7 @@ export const usePasswordValidate = () => {
   const [password, setPassword] = useState('');
 
   const passwordChangeEvent = e => {
-    if(e.target.value.length <= 3) {
+    if(e.target.value.length <= 3 && e.target.value !== '') {
       Errors.password.message = 'password is too weak';
       Errors.password.status = true;
       setPassword(e.target.value);

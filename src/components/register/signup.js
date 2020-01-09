@@ -1,12 +1,29 @@
-import React from 'react';
-import { useNameValidate, useEmailValidate, usePasswordValidate } from '../../hooks/useForm';
+import React, { useState } from 'react';
+import { 
+  useNameValidate, 
+  useEmailValidate, 
+  usePasswordValidate 
+} from '../../hooks/useForm';
 import '../../styles/register.scss';
-import Notify from '../../shared/notify';
+const Notify = React.lazy(() => import('../../shared/notify'));
 
 const Signup = () => {
   const  { name, nameChangeEvent, nameErrorMssg, isNameValid } = useNameValidate();
   const { email, emailChangeEvent, emailErrorMssg, isEmailValid } = useEmailValidate();
   const { password, passwordChangeEvent, passwordErrorMssg, isPasswordValid } = usePasswordValidate();
+
+  const [cPassword, setCpassword] = useState('');
+  const [errorStatus, setErrorStatus] = useState(false);
+
+  const checkPassword = e => {
+    if(e.target.value !== password && e.target.value.lenght !== 0) {
+      setErrorStatus(true);
+      setCpassword(e.target.value);
+    } else {
+      setCpassword(e.target.value);
+      setErrorStatus(false);
+    }
+  };
 
   return (
     <form>
@@ -27,7 +44,8 @@ const Signup = () => {
       </div>
       <div>
         <label>Confirm password</label>
-        <input type="text" />
+        <input type="text" name="c-password" value={cPassword} onChange={checkPassword} required/>
+        <Notify status={errorStatus} message= 'password did not match' type='error' />
       </div>
       <button>
         Register
