@@ -1,0 +1,49 @@
+@import './styles/variables.scss';
+
+nav {
+  background: addColor(main-color);
+  display: flex;
+  justify-content: space-between;
+  color: addColor(use);
+  .logo {
+    font-weight: bold;
+    padding: 0 1rem;
+  }
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    li {
+      padding: 0 1rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.link {
+  color: addColor(use);
+  text-decoration: none;
+}
+
+.toster {
+  text-align: center;
+  color: #fff;
+  width: 100%;
+
+  .success {
+    background: rgb(7, 216, 7);
+    width: 100%;
+    margin: .3rem;
+    border-radius: 5px;
+  }
+  .error {
+    background: rgb(243, 26, 26);
+    width: 100%;
+    margin: .3rem;
+    border-radius: 5px;
+  }
+}
+
+.hide {
+  display: none;
+}
