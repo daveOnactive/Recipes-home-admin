@@ -24,3 +24,23 @@ nav {
   color: addColor(use);
   text-decoration: none;
 }
+
+.toster {
+  text-align: center;
+  color: #fff;
+  width: 100%;
+
+  .success {
+    background: rgb(7, 216, 7);
+    width: 100%;
+    margin: .3rem;
+    border-radius: 5px;
+  }
+  .error {
+    background: rgb(243, 26, 26);
+    width: 100%;
+    margin: .3rem;
+    border-radius: 5px;
+  }
+
+}
