@@ -16,10 +16,15 @@ const Errors = {
 
 export const useNameValidate = () => {
   const [name, setName] = useState('');
+  const namePattern = /^[a-zA-Z ]{2,30}$/g;
   
   const nameChangeEvent = e => {
-    if(e.target.value.length <= 3 && e.target.value !== '') {
-      Errors.name.message = 'short name';
+    if(e.target.value.length <= 4 && e.target.value !== '') {
+      Errors.name.message = 'Name too short';
+      Errors.name.status = true;
+      setName(e.target.value);
+    } else if(e.target.value.length >= 4 && !e.target.value.match(namePattern)) {
+      Errors.name.message = 'Name cannot contain special charaters(*,$) or number(1,2)';
       Errors.name.status = true;
       setName(e.target.value);
     } else {
@@ -36,9 +41,14 @@ export const useNameValidate = () => {
 
 export const useEmailValidate = () => {
   const [email, setEmail] = useState('');
+  const validEmailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const emailChangeEvent = e => {
-    if(e.target.value.length <= 3 && e.target.value !== '') {
+    if(e.target.value.length <= 4 && e.target.value !== '') {
+      Errors.email.status = true;
+      Errors.email.message = 'Email too short';
+      setEmail(e.target.value);
+    } else if(e.target.value.length >= 4 && !e.target.value.match(validEmailPattern)) {
       Errors.email.status = true;
       Errors.email.message = 'Invalid Email';
       setEmail(e.target.value);
@@ -56,13 +66,19 @@ export const useEmailValidate = () => {
 
 export const usePasswordValidate = () => {
   const [password, setPassword] = useState('');
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])[a-zA-Z0-9\D]{8,}/g ;
 
   const passwordChangeEvent = e => {
-    if(e.target.value.length <= 3 && e.target.value !== '') {
-      Errors.password.message = 'password is too weak';
+    if(e.target.value.length <= 5 && e.target.value !== '') {
+      Errors.password.message = 'Password is too weak';
       Errors.password.status = true;
       setPassword(e.target.value);
-    } else {
+    } else if(e.target.value.length >= 5 && !e.target.value.match(passwordPattern)) {
+      Errors.password.message = 'Password must contain atlest one uppercase and lowercase alphabet and one special character(#, $)';
+      Errors.password.status = true;
+      setPassword(e.target.value);
+    }
+    else {
       Errors.password.message = '';
       Errors.password.status = false;
       setPassword(e.target.value);

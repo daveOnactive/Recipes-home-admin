@@ -4,6 +4,7 @@ import {
   useEmailValidate, 
   usePasswordValidate 
 } from '../../hooks/useForm';
+import { useSignup } from '../../hooks/useFetch';
 import '../../styles/register.scss';
 const Notify = React.lazy(() => import('../../shared/notify'));
 
@@ -11,6 +12,7 @@ const Signup = () => {
   const  { name, nameChangeEvent, nameErrorMssg, isNameValid } = useNameValidate();
   const { email, emailChangeEvent, emailErrorMssg, isEmailValid } = useEmailValidate();
   const { password, passwordChangeEvent, passwordErrorMssg, isPasswordValid } = usePasswordValidate();
+  const { setSignupApiUrl, setSignupBody, signUp } = useSignup();
 
   const [cPassword, setCpassword] = useState('');
   const [errorStatus, setErrorStatus] = useState(false);
@@ -25,8 +27,22 @@ const Signup = () => {
     }
   };
 
+  const submitForm = e => {
+    e.preventDefault();
+    const data = {
+      name: name,
+      email: email,
+      password: password
+    };
+    setSignupBody(data);
+    setSignupApiUrl('https://recipes-homes-api.herokuapp.com/api/user/register');
+    signUp().then(data => {
+      console.log(data);
+    });
+  };
+
   return (
-    <form>
+    <form onSubmit={submitForm}>
       <div>
         <label>Name</label>
         <input type="text" name="name" required value={name} onChange={nameChangeEvent} />
@@ -47,7 +63,7 @@ const Signup = () => {
         <input type="text" name="c-password" value={cPassword} onChange={checkPassword} required/>
         <Notify status={errorStatus} message= 'password did not match' type='error' />
       </div>
-      <button>
+      <button disabled={isNameValid && isEmailValid && isPasswordValid}>
         Register
       </button>
     </form>
