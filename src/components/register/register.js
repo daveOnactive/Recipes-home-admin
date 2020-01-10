@@ -21,10 +21,16 @@ const Register = () => {
     <main>
       <div className="wrapper">
         <div className="sign-in" ref={loginRef}>
+          <header>
+            <h2>Login</h2>
+          </header>
           <Login />
           <p>Don't have an account <button onClick={signUp}>sigup</button></p>
         </div>
         <div className="sign-up" ref={signUpRef}>
+          <header>
+            <h2>Signup</h2>
+          </header>
           <Signup />
           <p>Already have an account <button onClick={login}>login</button></p>
         </div>
