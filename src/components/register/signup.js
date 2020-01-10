@@ -4,6 +4,7 @@ import {
   useEmailValidate, 
   usePasswordValidate 
 } from '../../hooks/useForm';
+import { useSignup } from '../../hooks/useFetch';
 import '../../styles/register.scss';
 const Notify = React.lazy(() => import('../../shared/notify'));
 
@@ -11,6 +12,7 @@ const Signup = () => {
   const  { name, nameChangeEvent, nameErrorMssg, isNameValid } = useNameValidate();
   const { email, emailChangeEvent, emailErrorMssg, isEmailValid } = useEmailValidate();
   const { password, passwordChangeEvent, passwordErrorMssg, isPasswordValid } = usePasswordValidate();
+  const { setSignupApiUrl, setSignupBody, signUp } = useSignup();
 
   const [cPassword, setCpassword] = useState('');
   const [errorStatus, setErrorStatus] = useState(false);
@@ -32,7 +34,11 @@ const Signup = () => {
       email: email,
       password: password
     };
-
+    setSignupBody(data);
+    setSignupApiUrl('https://recipes-homes-api.herokuapp.com/api/user/register');
+    signUp().then(data => {
+      console.log(data);
+    });
   };
 
   return (
