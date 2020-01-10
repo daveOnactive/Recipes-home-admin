@@ -10,8 +10,16 @@ const Login = () => {
   const { email, emailErrorMssg, emailChangeEvent, isEmailValid } = useEmailValidate();
   const { password, passwordErrorMssg, passwordChangeEvent, isPasswordValid} = usePasswordValidate();
 
+  const submitForm = e => {
+    e.preventDefault();
+    const data = {
+      email: email,
+      password: password
+    };
+  };
+
   return (
-    <form>
+    <form onSubmit={submitForm}>
       <div>
         <label>Email</label>
         <input type="email" name="email" value={email} onChange={emailChangeEvent} required/>
@@ -22,7 +30,7 @@ const Login = () => {
         <input type="text" name="password" value={password} onChange={passwordChangeEvent} required/>
         <Notify status={isPasswordValid} message={passwordErrorMssg} type='error' />
       </div>
-      <button>
+      <button disabled={isEmailValid && isPasswordValid}>
         Login
       </button>
     </form>

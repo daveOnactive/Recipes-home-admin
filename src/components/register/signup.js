@@ -25,8 +25,18 @@ const Signup = () => {
     }
   };
 
+  const submitForm = e => {
+    e.preventDefault();
+    const data = {
+      name: name,
+      email: email,
+      password: password
+    };
+
+  };
+
   return (
-    <form>
+    <form onSubmit={submitForm}>
       <div>
         <label>Name</label>
         <input type="text" name="name" required value={name} onChange={nameChangeEvent} />
@@ -47,7 +57,7 @@ const Signup = () => {
         <input type="text" name="c-password" value={cPassword} onChange={checkPassword} required/>
         <Notify status={errorStatus} message= 'password did not match' type='error' />
       </div>
-      <button>
+      <button disabled={isNameValid && isEmailValid && isPasswordValid}>
         Register
       </button>
     </form>
