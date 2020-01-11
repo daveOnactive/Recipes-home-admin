@@ -1,17 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   usePasswordValidate,
   useEmailValidate
 } from '../../hooks/useForm';
 import '../../styles/register.scss';
-import { useLogin } from '../../hooks/useFetch';
+import { user } from '../../shared/User';
 import { auth } from '../authContext';
+import { Redirect } from 'react-router';
 const Notify = React.lazy(() => import('../../shared/notify'));
 
 const Login = () => {
+  const [redirect, setRedirect] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(false);
+  const [errorMssg, setErrorMssg] = useState('');
   const { email, emailErrorMssg, emailChangeEvent, isEmailValid } = useEmailValidate();
   const { password, passwordErrorMssg, passwordChangeEvent, isPasswordValid} = usePasswordValidate();
-  const { setLoginApiUrl, setLoginBody, Login } = useLogin();
   const [ setAuth ] = useContext(auth);
 
   const submitForm = e => {
@@ -20,16 +23,29 @@ const Login = () => {
       email: email,
       password: password
     };
-    setLoginBody(data);
-    setLoginApiUrl('https://recipes-homes-api.herokuapp.com/api/user/login');
-    Login().then(data => {
-      // setAuth(data);
-      console.log(data);
+    user('https://recipes-homes-api.herokuapp.com/api/user/login', data).then(data => {
+        if(data.token) {
+          setAuth({type: 'set', token: data.token});
+        } else {
+          setErrorMssg(data.error);
+          setErrorStatus(true);
+          setTimeout(() => setErrorStatus(false), 3000);
+        }
+    }).catch(err => {
+      console.error(err);
     })
   };
 
+
+  if(redirect) {
+    return (
+      <Redirect to='/admin' />
+    );
+  }
+
   return (
     <form onSubmit={submitForm}>
+       <Notify status={errorStatus} message={errorMssg}type='error' />
       <div>
         <label>Email</label>
         <input type="email" name="email" value={email} onChange={emailChangeEvent} required/>
