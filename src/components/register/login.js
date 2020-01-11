@@ -11,6 +11,8 @@ const Notify = React.lazy(() => import('../../shared/notify'));
 
 const Login = () => {
   const [redirect, setRedirect] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(false);
+  const [errorMssg, setErrorMssg] = useState('');
   const { email, emailErrorMssg, emailChangeEvent, isEmailValid } = useEmailValidate();
   const { password, passwordErrorMssg, passwordChangeEvent, isPasswordValid} = usePasswordValidate();
   const [ setAuth ] = useContext(auth);
@@ -22,13 +24,18 @@ const Login = () => {
       password: password
     };
     user('https://recipes-homes-api.herokuapp.com/api/user/login', data).then(data => {
-      setAuth({type: 'set', token: data});
+        if(data.token) {
+          setAuth({type: 'set', token: 'token'});
+        } else {
+          setErrorMssg(data.error);
+          setErrorStatus(true);
+          setTimeout(() => setErrorStatus(false), 3000);
+        }
     }).catch(err => {
-      console.log(err);
-    }).finally(() => {
-      setRedirect(true);
+      console.error(err);
     })
   };
+
 
   if(redirect) {
     return (
@@ -38,6 +45,7 @@ const Login = () => {
 
   return (
     <form onSubmit={submitForm}>
+       <Notify status={errorStatus} message={errorMssg}type='error' />
       <div>
         <label>Email</label>
         <input type="email" name="email" value={email} onChange={emailChangeEvent} required/>

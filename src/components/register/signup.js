@@ -4,7 +4,7 @@ import {
   useEmailValidate, 
   usePasswordValidate 
 } from '../../hooks/useForm';
-import { useSignup } from '../../hooks/useFetch';
+import { user } from '../../shared/User';
 import '../../styles/register.scss';
 const Notify = React.lazy(() => import('../../shared/notify'));
 
@@ -12,18 +12,19 @@ const Signup = () => {
   const  { name, nameChangeEvent, nameErrorMssg, isNameValid } = useNameValidate();
   const { email, emailChangeEvent, emailErrorMssg, isEmailValid } = useEmailValidate();
   const { password, passwordChangeEvent, passwordErrorMssg, isPasswordValid } = usePasswordValidate();
-  const { setSignupApiUrl, setSignupBody, signUp } = useSignup();
 
   const [cPassword, setCpassword] = useState('');
+  const [errorStat, setErrorStat] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
+  const [errorMssg, setErrorMssg] = useState('');
 
   const checkPassword = e => {
     if(e.target.value !== password && e.target.value.lenght !== 0) {
-      setErrorStatus(true);
+      setErrorStat(true);
       setCpassword(e.target.value);
     } else {
       setCpassword(e.target.value);
-      setErrorStatus(false);
+      setErrorStat(false);
     }
   };
 
@@ -34,15 +35,16 @@ const Signup = () => {
       email: email,
       password: password
     };
-    setSignupBody(data);
-    setSignupApiUrl('https://recipes-homes-api.herokuapp.com/api/user/register');
-    signUp().then(data => {
-      console.log(data);
-    });
+    user('https://recipes-homes-api.herokuapp.com/api/user/register', data).then(data => {
+          setErrorMssg(data.error);
+          setErrorStatus(true);
+          setTimeout(() => setErrorStatus(false), 3000);
+    })
   };
 
   return (
     <form onSubmit={submitForm}>
+      <Notify status={errorStatus} message={errorMssg}type='error' />
       <div>
         <label>Name</label>
         <input type="text" name="name" required value={name} onChange={nameChangeEvent} />
@@ -61,7 +63,7 @@ const Signup = () => {
       <div>
         <label>Confirm password</label>
         <input type="text" name="c-password" value={cPassword} onChange={checkPassword} required/>
-        <Notify status={errorStatus} message= 'password did not match' type='error' />
+        <Notify status={errorStat} message= 'password did not match' type='error' />
       </div>
       <button disabled={isNameValid && isEmailValid && isPasswordValid}>
         Register
