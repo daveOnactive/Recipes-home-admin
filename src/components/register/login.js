@@ -25,7 +25,7 @@ const Login = () => {
     };
     user('https://recipes-homes-api.herokuapp.com/api/user/login', data).then(data => {
         if(data.token) {
-          setAuth({type: 'set', token: 'token'});
+          setAuth({type: 'set', token: data.token});
         } else {
           setErrorMssg(data.error);
           setErrorStatus(true);
