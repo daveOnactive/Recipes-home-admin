@@ -6,7 +6,7 @@ import Login from './login';
 const Register = () => {
   const loginRef = useRef(null);
   const signUpRef = useRef(null);
-  const [swap, setSwap] = useState(false);æ
+  const [swap, setSwap] = useState(false);
 
   const login = e => {
     signUpRef.current.style.visibility = 'hidden';
