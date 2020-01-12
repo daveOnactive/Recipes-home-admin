@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export const auth = React.createContext();
 const AuthProvider = (props) => {
-  const [authState] = useState(localStorage.getItem('token'));
 
   const setAuth = (data) => {
     switch(data.type) {
       case 'get' :
-        return authState;
+        return localStorage.getItem('token');
       case 'set' :
         localStorage.setItem('token', data.token);
         break;
