@@ -4,7 +4,7 @@ import {
   useEmailValidate,
   usePasswordValidate
 } from '../../hooks/useForm';
-import { user } from '../../shared/User';
+import user from '../../shared/User';
 import Loader from '../../shared/loader';
 import '../../styles/register.scss';
 const Notify = React.lazy(() => import('../../shared/notify'));
@@ -39,21 +39,22 @@ const Signup = ({swap}) => {
       email: email,
       password: password
     };
-    user('https://recipes-homes-api.herokuapp.com/api/user/register', data).then(data => {
-      if (data.user) {
-        setErrorMssg('Registration successful');
-        setErrorStatus(true);
-        setTypeOfNotify('success');
-        setTimeout(() => setErrorStatus(false), 3000);
-        // swap();
-      } else {
-        setErrorMssg(data.error);
-        setErrorStatus(true);
-        setTypeOfNotify('error');
-        setTimeout(() => setErrorStatus(false), 3000);
-      }
-      setLoad(false);
-    })
+    // user('https://recipes-homes-api.herokuapp.com/api/user/register', data).then(data => {
+      // if (!data.error) {
+      //   setErrorMssg('Registration successful');
+      //   setErrorStatus(true);
+      //   setTypeOfNotify('success');
+      //   setTimeout(() => setErrorStatus(false), 3000);
+      //   // swap();
+      // } else {
+      //   setErrorMssg(data.error);
+      //   setErrorStatus(true);
+      //   setTypeOfNotify('error');
+      //   setTimeout(() => setErrorStatus(false), 3000);
+      // }
+      // console.log(data)
+
+      user('https://recipes-homes-api.herokuapp.com/api/user/register', data).then(result => console.log(result));
   };
 
   return (
