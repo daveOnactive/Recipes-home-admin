@@ -17,6 +17,11 @@ const Register = () => {
     loginRef.current.style.visibility = 'hidden';
   };
 
+  const swap = () => {
+    signUpRef.current.style.visibility = 'hidden';
+    loginRef.current.style.visibility = 'visible';
+  }
+
   return (
     <main>
       <div className="wrapper">
@@ -31,7 +36,7 @@ const Register = () => {
           <header>
             <h2>Signup</h2>
           </header>
-          <Signup />
+          <Signup login={[swap]} />
           <p>Already have an account <button onClick={login}>login</button></p>
         </div>
       </div>

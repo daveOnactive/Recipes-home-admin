@@ -1,15 +1,15 @@
 import { useState } from 'react';
 const Errors = {
   name: {
-    status: true,
+    status: false,
     message: ''
   },
   email: {
-    status: true,
+    status: false,
     message: ''
   },
   password: {
-    status: true,
+    status: false,
     message: ''
   }
 };
@@ -36,7 +36,7 @@ export const useNameValidate = () => {
   };
   const isNameValid = Errors.name.status;
   const nameErrorMssg = Errors.name.message;
-  return { name, nameChangeEvent, nameErrorMssg, isNameValid };
+  return { name, nameChangeEvent, nameErrorMssg, isNameValid, setName };
 };
 
 export const useEmailValidate = () => {
@@ -61,7 +61,7 @@ export const useEmailValidate = () => {
   const isEmailValid = Errors.email.status;
   const emailErrorMssg = Errors.email.message;
 
-  return { email, emailChangeEvent, isEmailValid, emailErrorMssg };
+  return { email, emailChangeEvent, isEmailValid, emailErrorMssg, setEmail };
 };
 
 export const usePasswordValidate = () => {
@@ -87,5 +87,5 @@ export const usePasswordValidate = () => {
   const isPasswordValid = Errors.password.status;
   const passwordErrorMssg = Errors.password.message;
 
-  return { password, passwordChangeEvent, isPasswordValid, passwordErrorMssg };
+  return { password, passwordChangeEvent, isPasswordValid, passwordErrorMssg, setPassword };
 };

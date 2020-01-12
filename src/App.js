@@ -1,11 +1,15 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import AuthProvider from './components/authContext';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheckCircle, faExclamationCircle, faFan } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 import PrivateRoute from './components/privateRoute';
+import Loader from './shared/loader';
 const Home = React.lazy(() => import('./components/home/home'));
 const Admin = React.lazy(() => import('./components/admin/admin'));
 const Register = React.lazy(() => import('./components/register/register'));
+library.add(faCheckCircle, faExclamationCircle, faFan);
 function App() {
   return (
       <Router>
@@ -25,7 +29,7 @@ function App() {
             </ul>
           </div>
         </nav>
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Loader load={true} />}>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/register' component={Register} />
