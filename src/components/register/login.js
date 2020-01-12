@@ -4,7 +4,7 @@ import {
   useEmailValidate
 } from '../../hooks/useForm';
 import '../../styles/register.scss';
-import { user } from '../../shared/User';
+import user from '../../shared/User';
 import { auth } from '../authContext';
 import { Redirect } from 'react-router';
 import Loader from '../../shared/loader';

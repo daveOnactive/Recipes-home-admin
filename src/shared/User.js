@@ -1,4 +1,4 @@
-export const user = async (api, data) => {
+const user = async (api, data) => {
   try {
     const response = await fetch(api, {
       method: 'POST',
@@ -13,3 +13,5 @@ export const user = async (api, data) => {
     console.log(err);
   }
 };
+
+export default user;
