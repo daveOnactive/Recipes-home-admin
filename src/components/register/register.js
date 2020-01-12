@@ -6,6 +6,7 @@ import Login from './login';
 const Register = () => {
   const loginRef = useRef(null);
   const signUpRef = useRef(null);
+  const [swap, setSwap] = useState(false);
 
   const login = e => {
     signUpRef.current.style.visibility = 'hidden';
@@ -17,7 +18,7 @@ const Register = () => {
     loginRef.current.style.visibility = 'hidden';
   };
 
-  const swap = () => {
+  if(swap) {
     signUpRef.current.style.visibility = 'hidden';
     loginRef.current.style.visibility = 'visible';
   }
@@ -36,7 +37,7 @@ const Register = () => {
           <header>
             <h2>Signup</h2>
           </header>
-          <Signup login={[swap]} />
+          <Signup login={setSwap} />
           <p>Already have an account <button onClick={login}>login</button></p>
         </div>
       </div>
