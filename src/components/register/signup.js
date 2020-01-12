@@ -4,6 +4,7 @@ import {
   useEmailValidate,
   usePasswordValidate
 } from '../../hooks/useForm';
+import axios from 'axios';
 import user from '../../shared/User';
 import Loader from '../../shared/loader';
 import '../../styles/register.scss';
@@ -39,22 +40,22 @@ const Signup = ({login}) => {
       email: email,
       password: password
     };
-    user('https://recipes-homes-api.herokuapp.com/api/user/register', data).then(data => {
-      if (data.user) {
+  user('https://recipes-homes-api.herokuapp.com/api/user/register', data).then(result => {
+         if (result.user) {
         setErrorMssg('Registration successful');
         setErrorStatus(true);
         setTypeOfNotify('success');
         setTimeout(() => setErrorStatus(false), 3000);
         login(true);
       } else {
-        setErrorMssg(data.error);
+        setErrorMssg('Email already exit');
         setErrorStatus(true);
         setTypeOfNotify('error');
         setTimeout(() => setErrorStatus(false), 3000);
       }
-      setLoad(false);
+      // setLoad(false);
   })
-
+  setLoad(false);
   };
 
   return (
