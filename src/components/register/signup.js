@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   useNameValidate,
   useEmailValidate,
   usePasswordValidate
 } from '../../hooks/useForm';
 import user from '../../shared/User';
-import Loader from '../../shared/loader';
 import '../../styles/register.scss';
 const Notify = React.lazy(() => import('../../shared/notify'));
 
@@ -62,28 +62,35 @@ const Signup = ({login}) => {
       <Notify status={errorStatus} message={errorMssg} type={typeOfNotify} />
       <div>
         <label>Name</label>
-        <input type="text" name="name" required value={name} onChange={nameChangeEvent} />
         <Notify status={isNameValid} message={nameErrorMssg} type='error' />
+        <input type="text" name="name" required value={name} onChange={nameChangeEvent} />
       </div>
       <div>
         <label>Email</label>
-        <input type="email" name="email" value={email} onChange={emailChangeEvent} required />
         <Notify status={isEmailValid} message={emailErrorMssg} type='error' />
+        <input type="email" name="email" value={email} onChange={emailChangeEvent} required />
       </div>
       <div>
         <label>Password</label>
-        <input type="text" name="password" value={password} onChange={passwordChangeEvent} required />
         <Notify status={isPasswordValid} message={passwordErrorMssg} type='error' />
+        <input type="text" name="password" value={password} onChange={passwordChangeEvent} required />
       </div>
       <div>
         <label>Confirm password</label>
-        <input type="text" name="c-password" value={cPassword} onChange={checkPassword} required />
         <Notify status={errorStat} message='password did not match' type='error' />
+        <input type="text" name="c-password" value={cPassword} onChange={checkPassword} required />
       </div>
       <button disabled={isNameValid && isEmailValid && isPasswordValid}>
         Register
+        <span className={load ? 'spinner' : 'spinner not-loading'}>
+          <FontAwesomeIcon
+            icon ='spinner'
+            spin = {true}
+            color = '#fcc395'
+            size = '2x'
+          />
+        </span>
       </button>
-      {load ? <Loader load={load} /> : ''}
     </form>
   );
 };
