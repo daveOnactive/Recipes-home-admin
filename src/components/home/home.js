@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../authContext';
 import '../../styles/home.scss';
 import '../../styles/button.scss';
 
 const Home = () => {
+  const  [ setAuth ] = useContext(auth);
+  const isAuth = setAuth({type: 'get', token: ''});
   return (
     <div className="main">
       <header>
@@ -17,7 +20,7 @@ const Home = () => {
               Admin
             </Link>
           </button>
-          <button className="button">
+          <button className={isAuth ? 'button not-loading' : 'button'}>
             <Link to='/register' className="link">
               Signup
             </Link>

@@ -35,6 +35,7 @@ export const useNameValidate = () => {
     }
     
   };
+
   const isNameValid = Errors.name.status;
   const nameErrorMssg = Errors.name.message;
   return { name, nameChangeEvent, nameErrorMssg, isNameValid, setName };
