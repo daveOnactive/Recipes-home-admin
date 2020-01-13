@@ -58,20 +58,19 @@ const Login = () => {
        <Notify status={errorStatus} message={errorMssg}type='error' />
       <div>
         <label>Email</label>
-        <input type="email" name="email" value={email} onChange={emailChangeEvent} required/>
+        <input type="email" name="email" value={email} onChange={emailChangeEvent} required disabled={load}/>
       </div>
       <div>
         <label>Password</label>
-        <input type="text" name="password" value={password} onChange={passwordChangeEvent} required/>
+        <input type="text" name="password" value={password} onChange={passwordChangeEvent} required disabled={load}/>
       </div>
       <button disabled={isEmailValid && isPasswordValid}>
-        Login
+      {!load ? 'Login' : ''}
         <span className={load ? 'spinner' : 'spinner not-loading'}>
           <FontAwesomeIcon
             icon ='spinner'
             spin = {true}
             color = '#fcc395'
-            size = '2x'
           />
         </span>
       </button>

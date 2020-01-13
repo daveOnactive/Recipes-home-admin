@@ -32,8 +32,8 @@ function App() {
         <Suspense fallback={<Loader load={true} />}>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/register' component={Register} />
-            <PrivateRoute path='/admin' component={Admin} />
+            <PrivateRoute path='/register' component={Register} type='register' />
+            <PrivateRoute path='/admin' component={Admin} type='admin' />
           </Switch>
         </Suspense>
         </AuthProvider>
