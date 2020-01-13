@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { useState } from 'react';
 const Errors = {
   name: {
@@ -19,11 +20,11 @@ export const useNameValidate = () => {
   const namePattern = /^[a-zA-Z ]{2,30}$/g;
   
   const nameChangeEvent = e => {
-    if(e.target.value.length <= 4 && e.target.value !== '') {
-      Errors.name.message = 'Name too short';
+    if(e.target.value.length <= 6 && e.target.value !== '') {
+      Errors.name.message = 'Name length can\'t be less than 6';
       Errors.name.status = true;
       setName(e.target.value);
-    } else if(e.target.value.length >= 4 && !e.target.value.match(namePattern)) {
+    } else if(e.target.value.length >= 6 && !e.target.value.match(namePattern)) {
       Errors.name.message = 'Name cannot contain special charaters(*,$) or number(1,2)';
       Errors.name.status = true;
       setName(e.target.value);
@@ -44,11 +45,11 @@ export const useEmailValidate = () => {
   const validEmailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const emailChangeEvent = e => {
-    if(e.target.value.length <= 4 && e.target.value !== '') {
+    if(e.target.value.length <= 6 && e.target.value !== '') {
       Errors.email.status = true;
-      Errors.email.message = 'Email too short';
+      Errors.email.message = 'Email length can\'t be less than 6';
       setEmail(e.target.value);
-    } else if(e.target.value.length >= 4 && !e.target.value.match(validEmailPattern)) {
+    } else if(e.target.value.length >= 6 && !e.target.value.match(validEmailPattern)) {
       Errors.email.status = true;
       Errors.email.message = 'Invalid Email';
       setEmail(e.target.value);
@@ -69,11 +70,11 @@ export const usePasswordValidate = () => {
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])[a-zA-Z0-9\D]{8,}/g ;
 
   const passwordChangeEvent = e => {
-    if(e.target.value.length <= 5 && e.target.value !== '') {
-      Errors.password.message = 'Password is too weak';
+    if(e.target.value.length <= 7 && e.target.value !== '') {
+      Errors.password.message = 'Password length can\'t be less than 7';
       Errors.password.status = true;
       setPassword(e.target.value);
-    } else if(e.target.value.length >= 5 && !e.target.value.match(passwordPattern)) {
+    } else if(e.target.value.length >= 7 && !e.target.value.match(passwordPattern)) {
       Errors.password.message = 'Password must contain atlest one uppercase and lowercase alphabet and one special character(#, $)';
       Errors.password.status = true;
       setPassword(e.target.value);

@@ -41,12 +41,12 @@ const Signup = ({login}) => {
     };
   user('https://recipes-homes-api.herokuapp.com/api/user/register', data).then(result => {
     // console.log(result);
-      if (result) {
+      if (result.user) {
         setErrorMssg('Registration successful');
         setErrorStatus(true);
         setTypeOfNotify('success');
         setTimeout(() => setErrorStatus(false), 3000);
-        setTimeout(() => login(true), 4500);
+        setTimeout(() => login(true), 1500);
       } else {
         setErrorMssg('Email already exit');
         setErrorStatus(true);

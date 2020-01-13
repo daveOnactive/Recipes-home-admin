@@ -7,8 +7,14 @@ const user = async (api, data) => {
       },
       body: JSON.stringify(data)
     });
-    const result = await response.json();
-    return result;
+    if(response.status === 400) {
+      const error = await response.json();
+      return error;
+    } else {
+      const result = await response.json();
+      return result;
+    }
+    
   } catch(err) {
     console.log(err);
   }
