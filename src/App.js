@@ -2,14 +2,14 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import AuthProvider from './components/authContext';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheckCircle, faExclamationCircle, faFan, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faExclamationCircle, faFan, faSpinner, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 import PrivateRoute from './components/privateRoute';
 import Loader from './shared/loader';
 const Home = React.lazy(() => import('./components/home/home'));
 const Admin = React.lazy(() => import('./components/admin/admin'));
 const Register = React.lazy(() => import('./components/register/register'));
-library.add(faCheckCircle, faExclamationCircle, faFan, faSpinner);
+library.add(faCheckCircle, faExclamationCircle, faFan, faSpinner, faPowerOff);
 function App() {
   return (
       <Router>

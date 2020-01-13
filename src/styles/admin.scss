@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 1rem;
+  button {
+    padding: 1rem;
+    border-radius: 50%;
+    border: none;
+    background: rgb(223, 219, 219);
+    outline: none;
+    box-shadow: 0 0 8px #fff;
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    transition: transform .6s;
+    &:active {
+      transform: scale(.8);
+    }
+  }
+}
