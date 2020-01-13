@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   usePasswordValidate,
   useEmailValidate
@@ -7,7 +8,6 @@ import '../../styles/register.scss';
 import user from '../../shared/User';
 import { auth } from '../authContext';
 import { Redirect } from 'react-router';
-import Loader from '../../shared/loader';
 const Notify = React.lazy(() => import('../../shared/notify'));
 
 const Login = () => {
@@ -66,8 +66,15 @@ const Login = () => {
       </div>
       <button disabled={isEmailValid && isPasswordValid}>
         Login
+        <span className={load ? 'spinner' : 'spinner not-loading'}>
+          <FontAwesomeIcon
+            icon ='spinner'
+            spin = {true}
+            color = '#fcc395'
+            size = '2x'
+          />
+        </span>
       </button>
-      {load ? <Loader load={load} /> : ''}
     </form>
     
   );
