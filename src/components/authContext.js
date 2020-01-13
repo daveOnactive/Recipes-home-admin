@@ -10,6 +10,9 @@ const AuthProvider = (props) => {
       case 'set' :
         localStorage.setItem('token', data.token);
         break;
+      case 'delete' :
+        localStorage.clear();
+        break;
       default:
         return data;
     }
