@@ -1,6 +1,5 @@
 @import './variables.scss';
 @import './button.scss';
-
 h2 {
   color: addColor(main-color);
   font-weight: bolder;
@@ -8,9 +7,12 @@ h2 {
   text-align: center;
 }
 form {
-  width: 40%;
+  width: 100%;
   padding: 0 .5rem;
   margin: 1rem 0;
+  @include desktop() {
+    width: 40%;
+  }
   label {
     color: addColor(main-color);
     margin: 1rem 0;
@@ -36,7 +38,6 @@ form {
 main {
   .wrapper {
     width: 50%;
-    // background: #111;
     position: relative;
     height: 100%;
     margin: 1rem auto;
@@ -46,7 +47,6 @@ main {
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
-      visibility: hidden;
     }
     .sign-in, .sign-up {
       display: flex;
@@ -54,4 +54,12 @@ main {
       flex-direction: column;
     }
   }
+  a {
+    color: addColor(main-color);
+    font-weight: bolder;
+  }
+}
+
+.hidden {
+  visibility: hidden;
 }
