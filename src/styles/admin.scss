@@ -1,8 +1,9 @@
 .header {
   display: flex;
-  flex-direction: row-reverse;
+  // flex-direction: row-reverse;
+  justify-content: space-between;
   padding: 1rem;
-  button {
+  .log-out-btn {
     padding: 1rem;
     border-radius: 50%;
     border: none;

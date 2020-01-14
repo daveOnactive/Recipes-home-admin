@@ -7,7 +7,7 @@ const PrivateRoute = ({component : Component, type, ...rest}) => {
   if(type === 'admin') {
     return (
       <Route {...rest} render={(props) => (
-        setAuth({type: 'get', token: ''}) ? (
+        setAuth({type: 'get-token', token: ''}) ? (
           <Component {...props} />
         ) : (
           <Redirect to='/register' />
@@ -19,7 +19,7 @@ const PrivateRoute = ({component : Component, type, ...rest}) => {
   if(type === 'register') {
     return (
       <Route {...rest} render={(props) => (
-        !setAuth({type: 'get', token: ''}) ? (
+        !setAuth({type: 'get-token', token: ''}) ? (
           <Component {...props} />
         ) : (
           <Redirect to='/' />
