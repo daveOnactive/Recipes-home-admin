@@ -4,13 +4,23 @@ export const auth = React.createContext();
 const AuthProvider = (props) => {
 
   const setAuth = (data) => {
-    switch(data.type) {
-      case 'get' :
-        return localStorage.getItem('token');
-      case 'set' :
-        localStorage.setItem('token', data.token);
+    switch (data.type) {
+      case 'get-token':
+        if (localStorage.getItem('userData')) {
+          const token = localStorage.getItem('userData');
+          return JSON.parse(token).token;
+        }
         break;
-      case 'delete' :
+      case 'get-id':
+        if (localStorage.getItem('userData')) {
+          const id = localStorage.getItem('userData');
+          return JSON.parse(id).userId;
+        }
+        break;
+      case 'set':
+        localStorage.setItem('userData', JSON.stringify(data.userData));
+        break;
+      case 'delete':
         localStorage.clear();
         break;
       default:
@@ -20,7 +30,7 @@ const AuthProvider = (props) => {
 
   return (
     <auth.Provider value={[setAuth]}>
-      { props.children }
+      {props.children}
     </auth.Provider>
   );
 };

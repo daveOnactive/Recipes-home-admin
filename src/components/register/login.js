@@ -5,7 +5,7 @@ import {
   useEmailValidate
 } from '../../hooks/useForm';
 import '../../styles/register.scss';
-import user from '../../shared/User';
+import { user } from '../../shared/Fetch';
 import { auth } from '../authContext';
 import { Redirect } from 'react-router';
 const Notify = React.lazy(() => import('../../shared/notify'));
@@ -33,7 +33,7 @@ const Login = () => {
     };
     user('https://recipes-homes-api.herokuapp.com/api/user/login', data).then(data => {
         if(data.token) {
-          setAuth({type: 'set', token: data.token});
+          setAuth({type: 'set', userData: data});
           clearFeild();
           setTimeout(() => setRedirect(true), 500);
         } else {

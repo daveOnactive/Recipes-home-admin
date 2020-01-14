@@ -6,7 +6,7 @@ import '../../styles/button.scss';
 
 const Home = () => {
   const  [ setAuth ] = useContext(auth);
-  const isAuth = setAuth({type: 'get', token: ''});
+  const isAuth = setAuth({type: 'get-token', token: ''});
   return (
     <div className="main">
       <header>

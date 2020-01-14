@@ -1,4 +1,4 @@
-const user = async (api, data) => {
+export const user = async (api, data) => {
   try {
     const response = await fetch(api, {
       method: 'POST',
@@ -20,4 +20,12 @@ const user = async (api, data) => {
   }
 };
 
-export default user;
+export const getSingleUSer = async (api) => {
+  try {
+    const response = await fetch(api);
+    const result = await response.json();
+    return result;
+  } catch(err) {
+    console.error(err);
+  }
+};

@@ -5,7 +5,7 @@ import {
   useEmailValidate,
   usePasswordValidate
 } from '../../hooks/useForm';
-import user from '../../shared/User';
+import { user } from '../../shared/Fetch';
 import '../../styles/register.scss';
 const Notify = React.lazy(() => import('../../shared/notify'));
 
