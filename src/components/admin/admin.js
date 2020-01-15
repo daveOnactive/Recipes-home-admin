@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../authContext';
 import '../../styles/admin.scss';
@@ -35,8 +36,11 @@ const Admin = () => {
   }, [reload]);
 
   const logOut = e => {
-    setAuth({type: 'delete', token: ''});
-    setRedirect(true);
+    if(confirm('Are sure you want to logout?')) {
+      setAuth({type: 'delete', token: ''});
+      setRedirect(true);
+    }
+    
   };
 
   const recipeBtn = e => {

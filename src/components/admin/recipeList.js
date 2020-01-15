@@ -16,7 +16,7 @@ const RecipeList = ({recipes, setReload}) => {
               <img src={items.imageUrl} alt='recipe' />
             </div>
             {items.title}
-            <span>
+            <span className='dlt-btn'>
               <DeleteBtn id={items._id} setReload={setReload} setShow={setShow}/>
             </span>
           </li>
