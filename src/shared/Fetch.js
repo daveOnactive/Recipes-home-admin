@@ -20,7 +20,7 @@ export const user = async (api, data) => {
   }
 };
 
-export const getSingleUSer = async (api) => {
+export const getReq = async (api) => {
   try {
     const response = await fetch(api);
     const result = await response.json();
@@ -29,3 +29,19 @@ export const getSingleUSer = async (api) => {
     console.error(err);
   }
 };
+
+export const deleteReq = async (api) => {
+  try {
+    const response = await fetch(api, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const result = await response.json();
+    return result;
+  } catch(err) {
+    console.error(err);
+  }
+}
+
