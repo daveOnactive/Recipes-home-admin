@@ -1,3 +1,5 @@
+@import './variables.scss';
+@import './button.scss';
 .header {
   display: flex;
   // flex-direction: row-reverse;
@@ -19,4 +21,70 @@
       transform: scale(.8);
     }
   }
+}
+
+.admin-btns {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  @include desktop() {
+    width: 40%;
+  }
+  button {
+    margin: .5rem;
+    span {
+      padding: 0 .3rem;
+    }
+  }
+}
+.recipe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: addColor(main-color);
+}
+.recipe-list {
+  width: 100%;
+  overflow: auto;
+  height: 400px;
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    li {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 50px;
+      padding: .5rem 1rem;
+      margin: 1rem;
+      .img {
+        height: 50px;
+        img {
+          width: 100%;
+          height: 100%;
+          box-shadow: 0 0 8px #fff;
+        }
+      }
+      span {
+        margin: 0 1rem
+      }
+    }
+  }
+}
+
+.close-btn {
+  color: addColor(main-color);
+  margin: .5rem 1rem;
+  cursor: pointer;
+}
+
+.dlt-btn {
+  cursor: pointer;
 }
