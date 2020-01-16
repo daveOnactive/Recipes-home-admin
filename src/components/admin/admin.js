@@ -109,6 +109,7 @@ const Admin = () => {
           </span>
         </button>
       </section> : ''}
+      <addRecipe />
       {showRecipe ? <RecipeList recipes={recipes} setReload={setReload} /> : ''}
       {addRecipe ? <AddRecipes /> : ''}
     </main>
